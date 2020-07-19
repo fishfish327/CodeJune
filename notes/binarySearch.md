@@ -29,3 +29,4 @@ int lower_bound(int[] arr,int value){
     return lo;
 }
 ```
+![avatar](https://github.com/fishfish327/CodeJune/blob/master/pictures/binary_2.png)
