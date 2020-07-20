@@ -9,7 +9,7 @@ class Solution {
             labelsMap.put(i, new int[26]);
             labelsMap.get(i)[labels.charAt(i) - 'a'] ++;
         }
-        // mark 数组,　记录访问过的几点
+        // mark 数组,　记录访问过的节点
         boolean[] mark = new boolean[n];
         // 自顶向下遍历树
         dfs(labelsMap, treeMap, 0, mark);
