@@ -23,7 +23,7 @@ class Solution {
     // 类似于前序遍历
     private void dfs(Map<Integer, int[]> labelsMap, Map<Integer, List<Integer>> graph, int curr, boolean[] mark){
         mark[curr] = true;
-        List<Integer> child = treeMap.get(curr);
+        List<Integer> child = graph.get(curr);
         for(int node : child){
             // 如果该节点被标记过，说明该节点记录的是当前节点的parent, 不予访问
             /*
@@ -40,7 +40,7 @@ class Solution {
                 continue;
             }
             // 对子节点　dfs
-            dfs(labelsMap, treeMap, node, mark);
+            dfs(labelsMap, graph, node, mark);
             int[] arrChild = labelsMap.get(node);
             int[] arrParent = labelsMap.get(curr);
             for(int i = 0; i < 26; i++){
