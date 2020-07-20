@@ -20,7 +20,7 @@ class Solution {
         }
         return res;
     }
-    // 类似于前序遍历
+    // 类似于后序遍历
     private void dfs(Map<Integer, int[]> labelsMap, Map<Integer, List<Integer>> graph, int curr, boolean[] mark){
         mark[curr] = true;
         List<Integer> child = graph.get(curr);
