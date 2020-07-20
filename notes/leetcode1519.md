@@ -2,7 +2,7 @@
 class Solution {
     public int[] countSubTrees(int n, int[][] edges, String labels) {
         // 记录edges 组成的无向图
-        Map<Integer, List<Integer>> graph = getTree(edges, n);
+        Map<Integer, List<Integer>> graph = getGraph(edges, n);
         
         // mark 数组,　记录访问过的节点
         boolean[] mark = new boolean[n];
@@ -49,7 +49,7 @@ class Solution {
     eg:  n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]]
     得到map : {0: [1,2], 1:[0,4,5], 2:[0,3,6], 3:[2], 4:[1], 5:[1], 6:[1]}
     */
-    public Map<Integer, List<Integer>> getTree(int[][] edges, int n){
+    public Map<Integer, List<Integer>> getGraph(int[][] edges, int n){
         Map<Integer, List<Integer>> res = new HashMap<>();
         for(int i = 0; i < n; i++){
             res.put(i, new ArrayList<>());
