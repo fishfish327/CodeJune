@@ -1,3 +1,4 @@
+```java
 class Solution {
     public int minSwaps(int[][] grid) {
         if(grid == null || grid.length == 0){
@@ -36,7 +37,7 @@ class Solution {
             
            若 arr[i] > i +1, 则在[i+1, n) 中寻找　arr[j] <= i + 1的元素
 
-           greedy 角度的理解: 从前往后遍历数组, swap arr[i] arr[j] 来确保之前的循环不变量成立，j - i 是每一步最小的swap 次数。　局部最优　----> 全局最优 
+           greedy 角度的理解: 从前往后遍历数组, swap arr[i], arr[j] 来确保之前的循环不变量成立，j - i 是每一步最小的swap 次数。　局部最优　----> 全局最优 
 
         */
         for(int i = 0; i < n; i++){
@@ -75,3 +76,4 @@ class Solution {
         }
     }
 }
+```
