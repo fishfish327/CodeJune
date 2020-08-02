@@ -77,3 +77,8 @@ class Solution {
     }
 }
 ```
+##### 补充greedy的证明
+![avatar](https://github.com/fishfish327/CodeJune/blob/master/pictures/greedy_swap.jpg)
+
+右下角的结论是：　non-greedy 中的　decrease_swap = j' - j - 2, increase_swap = j' - j
+所以　greedy 的swap < non_greedy 的
