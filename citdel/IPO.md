@@ -34,3 +34,46 @@ public class Main {
     }
 }
 ```
+
+// 通过轮询的方式分配相同价格的股票
+```java
+while(par > 0 && !pq.isEmpty()){
+       int[] curr = pq.poll();
+       Queue<int[]> queue = new LinkedList<>();
+       while(!pq.isEmpty() && pq.peek()[1] == curr[1]){
+           curr = pq.poll();
+           queue.add(curr);
+       }
+       totalShare = ipo(queue, par);
+       if(totalShare == 0){
+           for(int[] bid: queue){
+               pq.add(bid);
+           }
+       }
+        
+    }
+    public int ipo(Queue<int[]> queue, int totalShare){
+        if(queue.size() == 1){
+            totalShare -= queue.poll()[1];
+        } else {
+            Queue<int[]> copy = new LinkedList<>();
+            while(totalShare > 0 && queue.size() > 0){
+                int[] curr = queue.poll();
+                totalShare --;
+                curr[1] --;
+                if(curr[1] != 0){
+                    copy.add(curr);
+                }
+            }
+            while(totalShare > 0 && copy.size() > 0){
+                int[] curr = copy.poll();
+                totalShare --;
+                curr[1] --;
+                if(curr[1] != 0){
+                    copy.add(curr);
+                }
+            }
+        }
+        return totalShare;
+    }
+```
