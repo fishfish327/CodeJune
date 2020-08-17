@@ -1,0 +1,11 @@
+public int compare(List<String> A, List<String> B){
+    int len = A.size();
+    for(int i = 0; i < len; i++){
+        char chA = A.get(i).charAt(0);
+        char chB = B.get(i).charAt(0);
+        if(chA != chB){
+            return chA - chB;
+        }
+    }
+    return 0;
+}

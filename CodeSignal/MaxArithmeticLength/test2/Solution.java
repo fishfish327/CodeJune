@@ -3,6 +3,7 @@ public class Solution {
     
     public static int solution(int[] a, int[] b){
         int[] arr = new int[a.length + b.length];
+        // 数组a 在新数组的index
         LinkedList<Integer> list = new LinkedList<>();
         int max = Integer.MIN_VALUE;
 
@@ -20,14 +21,17 @@ public class Solution {
             }
             idx ++;
         }
-        // 
+        // key: a中元素的index, value : [公差, 当前位置等差数列的长度] 的list
         Map<Integer, List<int[]>> diffMap = new HashMap<>();
         if(a.length > 0){
             // 从idx = 1开始构建等差数列, 数据可插入 [0,1]区间内
+
+            // [0,4] first diff -> 4, [0, 2,4] diff -> 2
             for(int i = 1; i < list.size(); i++){
                 int element = list.get(i);
                 int prev = list.get(i-1);
                 List<int[]> tmpList = new ArrayList<>();
+                //[0,1,2,3,4]
                 if(!diffMap.containsKey(prev)){
                     int currDiff = arr[element] - arr[prev];
                     while(currDiff >= 0){
@@ -129,7 +133,7 @@ public class Solution {
     public static void main(String[] args){
            int[] a = {0,4,8,20};
            int[] b = {5,7,12,16,22};
-           int[] c = {2,6,10,12,14,16,18};
+           int[] c = {-2, 2,6,10,12,14,16,18,22};
            System.out.println(solution(a, b));
            System.out.println(solution(a, c));
     }
