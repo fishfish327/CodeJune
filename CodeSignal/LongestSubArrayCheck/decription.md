@@ -1,0 +1,1 @@
+longestSubarrayCheck       扫一遍，同时匹配b，注意可能会有TLE，多加一些pruning条件：maxL 超过 bL 立即False；剩余不足 maxL 时也跳出来
