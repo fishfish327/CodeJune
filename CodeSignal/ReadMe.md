@@ -16,3 +16,4 @@ output : 5
 - active cell in matrix
 - LongestSubArrayCheck 扫一遍，同时匹配b，注意可能会有TLE，多加一些pruning条件：maxL 超过 bL 立即False；剩余不足 maxL 时也跳出来
 - Count Occurrances 找到小于n的所有数字中 0 2 4 出现的频次
+- Digit Anagrams
