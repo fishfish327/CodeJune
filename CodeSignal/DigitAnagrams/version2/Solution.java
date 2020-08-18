@@ -6,9 +6,11 @@ public class Solution {
         for(int num: a){
             String str = digitString(num);
             int cnt = map.getOrDefault(str, 0);
-            res += cnt;
             map.put(str, cnt + 1);
             
+        }
+        for(int v : map.values()){
+            res += v * (v -1 ) / 2;
         }
         
         return res;
@@ -30,7 +32,7 @@ public class Solution {
            for(char c : list){
                sb.append(c);
            }
-
+           System.out.println(sb.toString());
            return sb.toString();
         
     }
