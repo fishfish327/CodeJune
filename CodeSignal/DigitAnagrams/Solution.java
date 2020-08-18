@@ -13,9 +13,18 @@ public class Solution {
     }
 
     public static boolean digitAnagrams(int a, int b){
+
         if(a == b){
             return true;
         }
+        // 找出　a 和 b中较小的一个
+        int min = Math.min(a, b);
+        if(a != min){
+            b = a;
+            a = min;
+        }
+
+        // 先算出最小数的digit, 若 digit 的数量不同直接返回false
         Set<Integer> sA = new HashSet<>();
         Set<Integer> sB = new HashSet<>();
         if(a == 0){
@@ -33,6 +42,9 @@ public class Solution {
         while(b > 0){
             int d = b % 10;
             sB.add(d);
+            if(sB.size() > sA.size()){
+                return false;
+            }
             b /= 10;
         }
         if(sA.size() != sB.size()){
