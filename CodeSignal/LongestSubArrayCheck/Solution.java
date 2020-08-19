@@ -12,7 +12,7 @@ public class Solution {
         while(end < a.length){
             // 如果　a[end] 不在 arr c 里面, 移动指针start, 更新subArrList
             if(!set.contains(a[end])){
-                start = end + 1;
+                
                 int[] subArr = subArrList.get(0);
                 
                 if(end - start > subArr[1] - subArr[0]){
@@ -21,6 +21,7 @@ public class Solution {
                 if(end - start >= subArr[1] - subArr[0]){
                     subArrList.add(new int[]{start, end});
                 } 
+                start = end + 1;
                 end ++;
             } else {
                 end ++;
