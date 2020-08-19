@@ -8,7 +8,7 @@ public class Solution {
            for(int i = 0; i < numOfBlock; i++){
                for(int j = 0; j < numOfBlock; j++){
                    int[][] subArr = new int[size][size];
-                   copyArr(numbers, subArr, size, i, j);
+                   copyArr(numbers, subArr, i, j);
                }
            }
            Comparator<int[][]> cmp = new Comparator<int[][]>(){
@@ -17,9 +17,14 @@ public class Solution {
                    return getBe(a) - getBe(b);
                }
            };
-           
+           for(int i = 0; i < list.size(); i++){
+               int[][] subArr = list.get(i);
+               copyBack(numbers, subArr, i);
+           }
+           return numbers;
     }
-    private static void copyArr(int[][] numbers, int[][] subArr, int size, int row, int col){
+    private static void copyArr(int[][] numbers, int[][] subArr, int row, int col){
+        int size = subArr.length;
         row *= size;
         col *= size;
         for(int i = 0; i < size; i++){
@@ -27,6 +32,20 @@ public class Solution {
                 subArr[i][j] = numbers[row + i][col + i];
             }
         }
+    }
+
+    private static void copyBack(int[][] numbers, int[][] subArr, int idx){
+            int size = subArr.length;
+            int row = idx / size;
+            int col = idx % size;
+
+            row *= size;
+            col *= size;
+            for(int i = 0; i < size; i++){
+                for(int j = 0; j < size; j++){
+                    numbers[row + i][col + i] = subArr[i][j];
+                }
+            }
     }
     
     private static int getBe(int[][] num){
