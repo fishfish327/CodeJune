@@ -17,9 +17,10 @@ public class Solution {
                    return getBe(a) - getBe(b);
                }
            };
+           list.sort(cmp);
            for(int i = 0; i < list.size(); i++){
                int[][] subArr = list.get(i);
-               copyBack(numbers, subArr, i);
+               copyBack(numbers, subArr, i, numOfBlock);
            }
            return numbers;
     }
@@ -34,10 +35,10 @@ public class Solution {
         }
     }
 
-    private static void copyBack(int[][] numbers, int[][] subArr, int idx){
+    private static void copyBack(int[][] numbers, int[][] subArr, int idx, int numOfBlock){
             int size = subArr.length;
-            int row = idx / size;
-            int col = idx % size;
+            int row = idx / numOfBlock;
+            int col = idx % numOfBlock;
 
             row *= size;
             col *= size;
@@ -65,5 +66,16 @@ public class Solution {
             }
         }
         return -1;
+    }
+    private static void printTest(int[][] numbers){
+            for(int[] num : numbers){
+                for(int i : num){
+                    System.out.p
+                }
+                System.out.println();
+            }
+    }
+    public static void main(String[] args){
+        int[][] numbers = new int[][] {{1,2,2,3},{3,4,10,4},{2,10,1,2},{5,4,4,5}};
     }
 }
