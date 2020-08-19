@@ -6,10 +6,9 @@ public class Main {
         Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < input.length; i++){
             for(int j = 0; j < input[0].length; j++){
-              map.put(input[i][j] ,map.getOrDefault(input[i][j], 0) + 1);
+              map.put(input[i][j] ,map.getOrDefault(input[i][j], 0) + 1);///不是map.get(input[i][j])
               System.out.println(map);
             }
-            
         }
         
         PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>(
@@ -27,7 +26,7 @@ public class Main {
             int num = y;
             int x = i;
             
-            while(num <= j){
+            while(num <= j){//不是<j
                 output[x][num] = curkey;
                 cur--;
                 if(cur == 0){
@@ -76,3 +75,4 @@ public class Main {
     }
 }
 ```
+
