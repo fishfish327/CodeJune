@@ -1,14 +1,26 @@
 import java.util.*;
+/*
+这个版本的解法取消了copyArr, 和copyBack两个方法
+需要注意的问题: OA中不适合封装太多方法，注意代码的简洁度
+*/
 public class Solution {
     public static int[][] sortByBeauty(int[][] numbers, int size){
            
            int len = numbers.length;
-           int numOfBlock = len / size;
-           List<int[][]> list = new ArrayList<>((numOfBlock) * (numOfBlock));
+           // 分割出的block数量
+           int numOfBlock = (len / size) * (len / size);
+           //           
+           List<int[][]> list = new ArrayList<>(numOfBlock);
            for(int i = 0; i < numOfBlock; i++){
-               for(int j = 0; j < numOfBlock; j++){
-                   int[][] subArr = new int[size][size];
-                   copyArr(numbers, subArr, i, j);
+               list.add(new int[size][size]);
+           }
+           for(int i = 0; i < len; i++){
+               for(int j = 0; j < len; j++){
+                   // curr block idx : i / size * (len / size) + j / size
+                   int idx = i / size * (len / size) + j / size;
+                   int[][] subArr = list.get(idx);
+                   // block 中对应元素的位置为　[i % size][j % size]
+                   subArr[i % size][ j % size] = numbers[i][j];
                }
            }
            Comparator<int[][]> cmp = new Comparator<int[][]>(){
@@ -18,39 +30,21 @@ public class Solution {
                }
            };
            list.sort(cmp);
-           for(int i = 0; i < list.size(); i++){
-               int[][] subArr = list.get(i);
-               copyBack(numbers, subArr, i, numOfBlock);
-           }
-           return numbers;
-    }
-    private static void copyArr(int[][] numbers, int[][] subArr, int row, int col){
-        int size = subArr.length;
-        row *= size;
-        col *= size;
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                subArr[i][j] = numbers[row + i][col + i];
+           for(int i = 0; i < len; i++){
+            for(int j = 0; j < len; j++){
+                // curr block idx : i / size * (len / size) + j / size
+                int idx = i / size * (len / size) + j / size;
+                int[][] subArr = list.get(idx);
+                // block 中对应元素的位置为　[i % size][j % size]
+                numbers[i][j] = subArr[i % size][ j % size];
             }
         }
-    }
-
-    private static void copyBack(int[][] numbers, int[][] subArr, int idx, int numOfBlock){
-            int size = subArr.length;
-            int row = idx / numOfBlock;
-            int col = idx % numOfBlock;
-
-            row *= size;
-            col *= size;
-            for(int i = 0; i < size; i++){
-                for(int j = 0; j < size; j++){
-                    numbers[row + i][col + i] = subArr[i][j];
-                }
-            }
+           return numbers;
     }
     
     private static int getBe(int[][] num){
         int max = 0;
+        int res = -1;
         Set<Integer> set = new HashSet<>();
         for(int[] arr: num){
             for(int i : arr){
@@ -58,24 +52,41 @@ public class Solution {
                 max = Math.max(i, max);
             }
         }
-        
+        res = max + 1;
         
         for(int i = 1; i <= max; i++){
             if(!set.contains(i)){
-                return i;
+                res = i;
+                break;
             }
         }
-        return -1;
+        System.out.println(res);
+        return res;
     }
     private static void printTest(int[][] numbers){
             for(int[] num : numbers){
                 for(int i : num){
-                    System.out.p
+                    System.out.print(i + " ");
                 }
                 System.out.println();
             }
     }
     public static void main(String[] args){
+        /*
+        1,2,2,3
+        3,4,10,4
+        2,10,1,2
+        5,4,4,5
+        */
         int[][] numbers = new int[][] {{1,2,2,3},{3,4,10,4},{2,10,1,2},{5,4,4,5}};
+        numbers = sortByBeauty(numbers, 2);
+        /* 期望的答案
+        2 3 2 10 
+        10 4 5 4 
+        1 2 1 2 
+        4 5 3 4 
+
+        */
+        printTest(numbers);
     }
 }
