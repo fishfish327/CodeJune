@@ -1,6 +1,11 @@
 目前遇到的问题：
-1.list.add("sad Burger's"); 不知道怎么用trie保存标点符号 / trie 改成character map?/n
+1.list.add("sad Burger's"); 不知道怎么用trie保存标点符号 / trie 改成character map?
+
+
+
 2.因为每个单词都可能会因为包含在很多个string里，所以trie我想成用list<String> 来保存数据 但如果这样不是一个一个加的话不太清楚怎么用
+  
+  
 3.不确定r = r.next[now];和
                         if(i == cur.length() - 1){
                             r.keyWrd.add(in);
