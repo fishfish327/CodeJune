@@ -159,3 +159,9 @@ public class Main {
 
 我一开始的顾虑还有并没有准备初始化 keyWrd（尽管自己的代码草稿里有初始化） 因为很怕后续bfs的时候加很多空的arraylist 但事实上无需担忧 因为如果这个arraylist 是空的那加多加少无所谓的嘛
 总之代码习惯里喜欢加没有意义的if else 需要尽量避免
+
+
+时空复杂度O(List<String>.size() * avg(string.size())) <- 建树
+找string O(str.length() + avg(String.size())) ?
+                                                    
+follow up 除了kmp和string 有没有别的办法？
