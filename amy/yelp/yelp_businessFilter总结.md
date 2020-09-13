@@ -1,4 +1,6 @@
 用了一个stream filter, 这个部分不是很熟悉其实
+原题是lc1333
+https://leetcode.com/discuss/interview-question/461202/Yelp-or-OA-2019-or-Filter-Businesses
 
 ```java
 // "static void main" must be defined in a public class.
