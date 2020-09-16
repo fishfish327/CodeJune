@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.concurrent.locks.ReentrantLock;
 
 class ListNode {
 	int key, value;
@@ -14,31 +13,6 @@ class ListNode {
 	}
 }
 
-class ClearCacheThread extends Thread {
-	LRUCache cache;
-	long expireTime;
-	int n;
-
-	public ClearCacheThread(LRUCache cache, long expireTime, int n) {
-		this.cache = cache;
-		this.expireTime = expireTime;
-		this.n = n;
-	}
-
-	@Override
-	public void run() {
-		try {
-			while (true) {
-				sleep(n * expireTime);
-				cache.clearCache();
-			}
-		} catch (InterruptedException ex) {
-			ex.printStackTrace();
-		}
-
-	}
-}
-
 public class LRUCache {
 	/*
 	 * @param capacity: An integer
@@ -50,10 +24,6 @@ public class LRUCache {
 	int capacity, size;
 	Map<Integer, ListNode> keytoPrev;
 
-	// new attribute
-	ReentrantLock cacheLock;
-	ClearCacheThread cacheThread;
-
 	// expire time in millsencond
 	long expireTime = 1000;
 	int n = 2;
@@ -64,10 +34,6 @@ public class LRUCache {
 
 		this.capacity = capacity;
 		this.keytoPrev = new HashMap<>();
-
-		this.cacheLock = new ReentrantLock();
-		this.cacheThread = new ClearCacheThread(this, expireTime, n);
-		cacheThread.start();
 	}
 
 	public void moveToTail(int key) {
@@ -89,12 +55,10 @@ public class LRUCache {
 	}
 
 	public int get(int key) {
-		cacheLock.lock();
 		if (!keytoPrev.containsKey(key)) {
 			return -1;
 		}
 		moveToTail(key);
-		cacheLock.unlock();
 		return tail.value;
 	}
 
@@ -107,7 +71,6 @@ public class LRUCache {
 	 */
 	public void set(int key, int value) {
 
-		cacheLock.lock();
 		if (keytoPrev.containsKey(key)) {
 			ListNode prev = keytoPrev.get(key);
 			ListNode cur = prev.next;
@@ -131,14 +94,12 @@ public class LRUCache {
 		first.value = value;
 		keytoPrev.put(key, dummy);
 		moveToTail(key);
-		cacheLock.unlock();
+		clearCache();
 	}
 
 	public void clearCache() {
-		// if return true, we need to clear cache
-		// otherwise we do not need clear cache
+		// check time of head node
 		long currentTime = System.currentTimeMillis();
-		cacheLock.lock();
 		while (dummy.next != null) {
 			ListNode node = dummy.next;
 			if (currentTime - node.timestamp > expireTime) {
@@ -151,8 +112,6 @@ public class LRUCache {
 				break;
 			}
 		}
-		cacheLock.unlock();
-
 	}
 
 	public static void main(String[] args) {

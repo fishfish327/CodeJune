@@ -1,6 +1,6 @@
 import java.util.*;
 public class Solution {
-    public static int solution(int[] a, int[] b, int lower, int upper){
+    public static int searchArray(int[] a, int[] b, int lower, int upper){
         for(int i = 0; i < a.length; i++){
             a[i] *= a[i];
         }

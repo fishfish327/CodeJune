@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 public class Solution {
-    public static boolean solution(String a, String b){
+    public static boolean charCompare(String a, String b){
         if(a.length() != b.length()){
             return false;
         }
