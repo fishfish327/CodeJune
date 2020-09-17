@@ -28,6 +28,12 @@ Java also can define multiple top level classes in a single file
 see discussion here : https://stackoverflow.com/questions/2336692/java-multiple-class-declarations-in-one-file
 
 
+如果 input 没有shuffle , 可以自己手动shuffle
+
+
+连着　poll()两次有bug
+
+
 
 
 
