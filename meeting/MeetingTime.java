@@ -22,7 +22,7 @@ public class MeetingTime {
 	if(meetings.size() == 0){
 	   return 0;
 	}
-	Comparator<Meeting> cmp = new Comparator<>(
+	Comparator<Meeting> cmp = new Comparator<>(){
 		@Override	
 		public int compare(Meeting a, Meeting b){
 			if(a.day == b.day) {
@@ -35,7 +35,7 @@ public class MeetingTime {
 			   return a.day - b.day;
 			}
 		}	
-	);
+		};
 
         meetings.sort(cmp);
 
@@ -48,7 +48,7 @@ public class MeetingTime {
 		       int diff = 0;
 		       diff += curr.minute - (prev.minute + prev.minuteDuration);
 		       diff += (curr.hour - prev.hour - prev.hourDuration) * 60;
-		       int max = Math.max(diff, max);
+		       max = Math.max(diff, max);
 		}
 		prev = curr;
 		
