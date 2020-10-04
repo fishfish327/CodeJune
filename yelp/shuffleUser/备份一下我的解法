@@ -1,0 +1,95 @@
+// "static void main" must be defined in a public class.
+public class Main {
+    static class People{
+        String name;
+        String team;
+        public People(String name, String team){
+            this.name = name;
+            this.team = team;
+        }
+    }
+    public static List<List<String>> shuffleUsers(List<People> peoples){
+        List<List<String>> result = new ArrayList<>();
+        int n = peoples.size();
+        for(int i = 0; i < n / 2; i++){
+            List<String> par = new ArrayList<>();
+            par.add(peoples.get(i).name);
+            par.add(peoples.get(n - i - 1).name);
+            result.add(par);
+        }
+        if(n % 2 == 0){
+            return result;
+        }
+        List<String> list = new ArrayList<>();
+        list.add("");
+        list.add(peoples.get(n/2).name);
+        result.add(list);
+        return result;
+    }
+   /* 接下來follow-up是， 給定一定間隔，產生的 pair 不能在之前出現的paris中出現過。
+我只寫完brute force 算法。就是把每個pair 裡面names stored過，存到set 去檢查是否有重複到。*/
+    
+    public static List<List<String>> shuffleUsers1(List<People> peoples, List<String[]> prev){
+        Set<String[]> pre = new HashSet<>(prev);
+        Queue<People> q = new LinkedList<>(peoples);
+        List<List<String>> res = new ArrayList<>();
+        check(pre, q, res);
+        return res;
+    }
+    
+    public static void check(Set<String[]> pre, Queue<People> q, List<List<String>> res){
+        People p1 = q.poll();
+        People p2 = q.poll();
+        int check = 0;
+        while(check < pre.size() && !q.isEmpty()){
+            if(pre.contains(new String[]{p1.name,p2.name})||pre.contains(new String[]{p2.name,p1.name})){
+                q.offer(p1);
+                p1 = q.poll();
+                check++;
+                System.out.println(check);
+            }else{
+                res.add(Arrays.asList(new String[]{p1.name, p2.name}));
+                p1 = q.poll();
+                p2 = q.poll();
+                check = 0;
+            }
+            //这么写应该不能解决如果所有内部排列组合都在prev里面的情况
+        }
+    }
+    /*
+这题有个不一样的follow up
+现在每个人都有一个组，相同的组不能互相配对。
+例如：[{id: 'Alan', team: 'a'}, {id: 'Da', team: 'a'}, {id: 'Jen', team: 'c'}, {id: 'Kevin', team: 'd'}, {id: 'Neha', team: 'm'}, {id: 'Rachel', team: 'q'}, {id: 'Tom', team: 'a'}]
+那么 {id: 'Alan', team: 'a'} 不能和 {id: 'Da', team: 'a'} 配对，因为同一组。
+输入： [{id: 'Alan', team: 'a'}, {id: 'Da', team: 'a'}]
+输出：  [{id: 'Alan', team: 'a'}, None] 和 [{id: 'Da', team: 'a'}, None]. 因为输入2个是同一组，所以都不能找到配对。
+给点大米吧！！！*/
+     public static List<List<String>> shuffleUsers2(List<People> peoples){
+       
+         return new ArrayList<>();
+         
+    }
+    public static void main(String[] args) {
+        List<People> test1 = new ArrayList<>();
+        
+        test1.add(new People("Alan", "a"));
+        test1.add(new People("Da", "a"));
+        test1.add(new People("Jen", "c"));
+        test1.add(new People("Kevin", "d"));
+        test1.add(new People("Neha", "m"));
+        test1.add(new People("Rachel", "q"));
+        test1.add(new People("Tom", "a"));
+        test1.add(new People("Alan", "c"));
+        test1.add(new People("Da", "r"));
+        test1.add(new People("Jen", "e"));
+        test1.add(new People("Kevin", "b"));
+        test1.add(new People("Neha", "n"));
+        String[][] last_n_pairs = { {"Alan", "Kevin"}, {"Jen", "Da"}, {"Neha", "Rachel"},{"Da", "Alan"}, {"Neha", "Rachel"}, {"Jen", "Kevin"}};
+        //System.out.println(shuffleUsers1(test1,Arrays.asList(last_n_pairs)));
+         List<People> test2 = new ArrayList<>();
+        test2.add(new People("Alan", "a"));
+        test2.add(new People("Da", "a"));
+        System.out.println(shuffleUsers1(test2,Arrays.asList(last_n_pairs)));
+
+    }
+}
