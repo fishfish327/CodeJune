@@ -1,7 +1,7 @@
 ###  一些环境准备工作
-－　set up ubuntu 虚拟机
-－　安装　vscode
-－　安装　npm
+- set up ubuntu 虚拟机
+- 安装　vscode
+- 安装　npm
 
 ### 学习视频
 - https://github.com/fishfish327/CodeJune.git
