@@ -1,0 +1,38 @@
+一些follow up：
+yelp bean ：
+如果要求是，给定一定间隔，产生的pair 不能在之前的pairs出现过 + pair 里面加入的两个人不能在一个组
+怎么做？
+ref: https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=511141&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3089%5D%5Bvalue%5D%5B2%5D%3D2%26searchoption%5B3089%5D%5Btype%5D%3Dcheckbox%26searchoption%5B3046%5D%5Bvalue%5D%3D36%26searchoption%5B3046%5D%5Btype%5D%3Dradio%26sortid%3D311%26orderby%3Ddateline
+
+
+Lover message : 
+
+，就是设计一个love message的题，比如给一个list，形式诸如[{"sender":'**, "email":**,"receiver":**},{"sender":'**, "email":**,"receiver":**}....]，
+设计一个算法获取拿到最多message的人，后续问如果要写另一个设法获取发出最多love m‍‍essage的人，怎么抽象一个公共的方法，然后问如果有duplicate怎么处理。 (ref : https://www.1point3acres.com/bbs/thread-511507-1-1.html
+希望有Onsite, 求点大米，祝各位求职顺利~  
+follow up就是优化code，楼主加了几种error checking，naming改成convention，然后删了一两句repetitive cod‍‍es 
+这题主要是error checking 怎么做? (ref:https://www.1point3acres.com/bbs/thread-456025-1-1.html
+
+prefix search：
+prefix 那道题给一个search term比如“bur”，要求match前k个店名，满足其中某一个单词match prefix。
+并且输出的顺序得是先输出第一个word满足的，再输出第二个word满足的，
+比如对于“bur”，"Burgers"和“Super Burgers”都是match的，但是要先输出Burgers再输出Su‍‍per Burgers
+
+ref: https://www.1point3acres.com/bbs/thread-515918-1-1.html
+
+
+restaurant：
+怎么实现拼桌
+
+有向无环图/有向带环图
+https://www.1point3acres.com/bbs/thread-469279-1-1.html
+刚刚面的药铺电面，题目是给你的input是一个list，比如[ (A, B), (B, C), (C, D) ]，可以想象A, B, C, D是四个不同的yelp的页面，(A, B)表示从页面A到页面B，当然这个list的顺序会被打乱，问题是给定起始页面找出最后页面，中间可能会有cycle，比如 A-B-A-B，followup是有多个dest页面怎么做，我看了下好像是地里面onsite的题，我写的解法是hashmap存路径，走一条删一条，还会让‍‍‌‌‍‌‍‌‍‍‍‌‌‍‍‌‍‍‌跑一些test case，但是followup没时间写了， 感觉答得不太好，有点没睡醒，应该是凉凉
+
+
+more:
+merge string : 双指针解法
+
+https://www.1point3acres.com/bbs/thread-529076-3-1.html 的解法就可以了
+
+
+2019年年初至今 药铺电面总结及思路（按照频率排序）+ 8/9新鲜面经：https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=542585&ctid=229310
