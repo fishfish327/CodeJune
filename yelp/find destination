@@ -1,6 +1,9 @@
 given a list of paths and starting point, find the destination 
   无环，每个点至多只有一个出度
- ```{java}
+  
+  
+ ```{Java}
+ 
  public static String solution1(List<List<String>> paths, String start){
         Map<String, String> graph = new HashMap<>();
         for(List<String> path : paths){
