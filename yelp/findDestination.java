@@ -92,3 +92,55 @@
         System.out.println(solution3(paths, "A"));
     }
 }
+
+//revision 版本有环多出度
+
+static List<List<String>> res = new ArrayList<>();
+    static boolean isCycle = false;
+    public static List<List<String>> solution3(List<List<String>> paths, String start){
+        
+        Map<String, List<String>> graph = new HashMap<>();
+         for(List<String> path : paths){
+            graph.putIfAbsent(path.get(0), new LinkedList<>());
+             graph.get(path.get(0)).add(path.get(1));
+        }
+        System.out.println(graph);
+        Set<String> visited = new LinkedHashSet<String>();
+        visited.add(start);
+       
+        helper(graph, start,visited);
+        
+        System.out.println(isCycle);
+        return  isCycle ? new ArrayList<>() :res;
+        
+    }
+    private static void helper(Map<String, List<String>> graph, String start, Set<String> visited){
+        
+        if(isCycle) return;
+        if(visited.contains(start)) isCycle = true;
+        if(!graph.containsKey(start)){
+            res.add(new ArrayList<>(visited));
+            return;
+        }
+        
+        List<String> nextNodes = graph.get(start);
+        for(int i = 0; i < nextNodes.size(); i++){
+            String nextNode = nextNodes.get(i);
+         
+            visited.add(nextNode);
+            helper(graph, nextNode,  visited);
+            visited.remove(nextNode);
+        }
+    }
+    
+    public static void main(String[] args) {
+        List<List<String>> paths = new ArrayList<>();
+        paths.add(Arrays.asList(new String[]{"A","B"}));
+        paths.add(Arrays.asList(new String[]{"A", "C"}));
+        paths.add(Arrays.asList(new String[]{"B","C"}));
+        paths.add(Arrays.asList(new String[]{"B","D"}));
+       //  paths.add(Arrays.asList(new String[]{"D","B"}));
+        
+        System.out.println(solution3(paths, "A"));
+    }
+}
