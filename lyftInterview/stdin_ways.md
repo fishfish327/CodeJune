@@ -8,8 +8,11 @@ hackerrank上有相当一部分resource ： https://www.hackerrank.com/challenge
 
 可以
 int capacity = Integer.valueOf(in.next().trim());
+
 int inputSize = Integer.valueOf(in.next().trim());
+
 String[]操作输入
+
 int[][]操作格式
 
 int i = 0; i < inputsize; i++
