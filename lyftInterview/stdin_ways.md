@@ -1,5 +1,6 @@
 general source:
 https://rosettacode.org/wiki/Input_loop#Java
+
 https://rosettacode.org/wiki/Hello_world/Text#Java
 
 ##a copy for rosettacode
@@ -64,6 +65,8 @@ public class InputLoop {
 
 ```
 ##few code 
+
+针对function（String input)
 
 ```Java
 
