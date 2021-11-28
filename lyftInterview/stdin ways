@@ -65,7 +65,7 @@ public class InputLoop {
 ```
 ##few code 
 
-```java
+```Java
 
  public static void main(String[] args) throws IOException {// may useful through IOException
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
