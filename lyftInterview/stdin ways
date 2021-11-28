@@ -4,7 +4,7 @@ https://rosettacode.org/wiki/Hello_world/Text#Java
 
 ##a copy for rosettacode
 
-```java
+```{java}
 
 import java.io.InputStream;
 import java.util.Scanner;
