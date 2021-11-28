@@ -7,6 +7,7 @@ hackerrank上有相当一部分resource ： https://www.hackerrank.com/challenge
 如果是数字参杂着string，比如lru那种题目
 
 可以
+```java
 int capacity = Integer.valueOf(in.next().trim());
 
 int inputSize = Integer.valueOf(in.next().trim());
@@ -33,7 +34,7 @@ int i = 0; i < inputsize; i++
   
   最后操作格式[i] = next 
   
-
+```
 
 ##a copy for rosettacode
 
