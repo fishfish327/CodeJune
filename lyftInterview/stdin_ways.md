@@ -3,6 +3,27 @@ https://rosettacode.org/wiki/Input_loop#Java
 
 https://rosettacode.org/wiki/Hello_world/Text#Java
 
+hackerrank上有相当一部分resource ： https://www.hackerrank.com/challenges/find-the-nearest-clone/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=graphs
+如果是数字参杂着string，比如lru那种题目
+
+可以
+int capacity = Integer.valueOf(in.next().trim());
+int inputSize = Integer.valueOf(in.next().trim());
+String[]操作输入
+int[][]操作格式
+
+int i = 0; i < inputsize; i++
+  操作输入[i] = in.nextLine();
+  int[] next = null;
+  if(操作输入[i] == "get") next = new int[1] (key值）
+  else if（操作输入[i] == "set") next = new int[2] （key value 对）
+  else if( 操作输入[i] == “rollback") next = new int[0]
+  int j = 0;
+  while(j < next.length) 一顿操作
+  最后操作格式[i] = next 
+  
+
+
 ##a copy for rosettacode
 
 ```{java}
