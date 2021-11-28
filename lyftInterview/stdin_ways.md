@@ -13,13 +13,21 @@ String[]操作输入
 int[][]操作格式
 
 int i = 0; i < inputsize; i++
+
   操作输入[i] = in.nextLine();
+  
   int[] next = null;
+  
   if(操作输入[i] == "get") next = new int[1] (key值）
+  
   else if（操作输入[i] == "set") next = new int[2] （key value 对）
+  
   else if( 操作输入[i] == “rollback") next = new int[0]
+  
   int j = 0;
+  
   while(j < next.length) 一顿操作
+  
   最后操作格式[i] = next 
   
 
