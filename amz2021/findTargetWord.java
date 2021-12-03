@@ -41,7 +41,7 @@ public class Main {
             return;
         }
         char ch = s.charAt(index);
-        if(!mapForTupes.containsKey(ch)) return;
+        if(!mapForTupes.containsKey(ch) || visited.containsAll(mapForTupes.get(ch)) return;
         for(Tupe t : mapForTupes.get(ch)){
             if(!visited.contains(t)){
                 visited.add(t);
