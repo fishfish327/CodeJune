@@ -1,0 +1,58 @@
+test case 1: test about rollback
+7
+block
+set(mama,2,3)
+set(papa,2,3)
+rollback
+block
+set(cusion,3,4)
+commit
+initialize DataBase
+[SET, cusion]
+[2, 3]
+initialize subTreemap with key: cusion
+add version: 3 to key: cusion and value :2
+
+test case 1: test about normal block&commit
+
+nestedblock
+test case 3:
+7
+block
+block
+set(papa,1,3)
+set(mama,1,3)
+commit
+set(cousin,5,6)
+commit
+initialize DataBase
+[SET, papa]
+[1, 3]
+[SET, mama]
+[1, 3]
+[SET, cousin]
+[5, 6]
+initialize subTreemap with key: papa
+add version: 3 to key: papa and value :1
+initialize subTreemap with key: mama
+add version: 3 to key: mama and value :1
+initialize subTreemap with key: cousin
+add version: 6 to key: cousin and value :5
+
+Process finished with exit code 0
+
+test case 4: nestedblock's rollback
+7
+block
+block
+set(papa,1,3)
+set(shuaishuai,2,1)
+rollback
+set(lingling,3,2)
+commit
+initialize DataBase
+[SET, lingling]
+[3, 2]
+initialize subTreemap with key: lingling
+add version: 2 to key: lingling and value :3
+
