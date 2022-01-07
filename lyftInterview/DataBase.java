@@ -1,56 +1,38 @@
 package com.company;
 import java.util.*;
-
 public class DataBase {
-    Map<String, TreeMap<Integer, Integer>> dataBaseMap;
+    int timeStep;
+    Map<String, TreeMap<Integer, Integer>> allVersonMap;
+    Map<String, Integer> latestVersionMap;
     public DataBase(){
-        dataBaseMap = new HashMap<>();
-        System.out.println("initialize DataBase" );
+        timeStep = 0;
+        allVersonMap = new HashMap<>();
+        latestVersionMap = new HashMap<>();
     }
-    public void set(String key, int value, int version){
-        if(!dataBaseMap.containsKey(key)){
-            dataBaseMap.put(key, new TreeMap<>());
-            System.out.println("initialize subTreemap with key: " + key);
+    public int put(String key, int value){
+        timeStep++;
+        if(!allVersonMap.containsKey(key)){
+            allVersonMap.put(key, new TreeMap<>());
         }
-        dataBaseMap.get(key).put(version, value);
-        System.out.println("add version: " + version+ " to key: " + key + " and value :" + value);
+        allVersonMap.get(key).put(timeStep, value);
+        latestVersionMap.put(key, value);
+        return timeStep;
     }
-    public int get(String key, int version){
-        if(!dataBaseMap.containsKey(key)){
-            System.out.println("there is no key names :" + key);
-            return  -1;
+    public Integer get(String key){
+        if(!latestVersionMap.containsKey(key)){
+            return null;
         }
-        TreeMap<Integer, Integer> subMap = dataBaseMap.get(key);
-        Map.Entry<Integer, Integer> lowerBnd = subMap.floorEntry(version);
-        if(lowerBnd == null){
-            System.out.println("there is no version in " + key + "'s set lower than " + version );
-            return -1;
-        }
-        System.out.println("the cloest key in  " + key + "'s set is " + lowerBnd.getValue() );
-        return lowerBnd.getValue();
+        return latestVersionMap.get(key);
     }
-    public int numWithValue(int value, int byKey){//check if byKey then we might need to count each key once a time
-        int count = 0;
-        for(String key : dataBaseMap.keySet()){
-            TreeMap<Integer, Integer> subMap = dataBaseMap.get(key);
-            for(Integer subKey : subMap.keySet()){
-                if(subMap.get(subKey) == value){
-                    count++;
-                    if(byKey == 1) break;
-                }
-            }
+    public Integer get(String key, int version){
+        if(!latestVersionMap.containsKey(key)){
+            return null;
         }
-        if(byKey == 1 ) System.out.println("there are " + count + " keys in db with value " + value);
-        else System.out.println("there are " + count + " versioned keys in db with value " + value );
-        return count;
-    }
-
-    public void unSet(String key){
-        if(dataBaseMap.containsKey(key)){
-            System.out.println("DB removed " + key);
-            dataBaseMap.remove(key);
-            return;
+        TreeMap<Integer,Integer> subMap = allVersonMap.get(key);
+        Map.Entry<Integer, Integer> closestVersion = subMap.floorEntry(version);
+        if(closestVersion == null){
+            return null;
         }
-        System.out.println("no such key in DB");
+        return closestVersion.getValue();
     }
 }
